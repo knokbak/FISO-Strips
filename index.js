@@ -38,7 +38,7 @@ async function init() {
             height: height,
             minHeight: height,
             width: width,
-            //minWidth: width,
+            minWidth: 750,
             //maxWidth: width,
             maximizable: true,
             alwaysOnTop: false,
@@ -121,9 +121,7 @@ async function init() {
             runUpdateCheck();
 
             function runUpdateCheck() {
-                if (allowUpdates) {
-                    autoUpdater.checkForUpdates();
-                }
+                autoUpdater.checkForUpdates();
             }
         }
 
