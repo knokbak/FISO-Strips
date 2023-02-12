@@ -3,7 +3,7 @@ A very simple work-in-progress app for the management of virtual flight progress
 
 ## License
 
-Virtual FISO Strips application
+Virtual FISO Strips application    
 Copyright (C) 2023 Vionity Ltd
 
 THIS SOFTWARE IS STRICTLY FOR SIMULATION USE ONLY. UNDER ABSOLUTELY NO
