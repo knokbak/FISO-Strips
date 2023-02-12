@@ -1,0 +1,100 @@
+{
+  "name": "FISO-Strips",
+  "version": "1.0.0",
+  "description": "An aircraft information strips program for FISOs on VATSIM.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run build && electron-forge start",
+    "pack": "npm run build && electron-builder --dir --x64 --ia32",
+    "publish": "npm run build && electron-builder --x64 --ia32 --publish always",
+    "build": "tsc && webpack --config webpack.config.dev.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/knokbak/FISO-Strips.git"
+  },
+  "author": "Vionity Ltd",
+  "private": true,
+  "build": {
+    "appId": "co.vionity.fiso-strips",
+    "productName": "FISO Strips",
+    "copyright": "Copyright © Vionity Ltd, 2023. All rights reserved.",
+    "generateUpdatesFilesForAllChannels": true,
+    "win": {
+      "certificateSubjectName": "Vionity Ltd",
+      "rfc3161TimeStampServer": "http://timestamp.digicert.com",
+      "timeStampServer": "http://timestamp.digicert.com",
+      "requestedExecutionLevel": "highestAvailable",
+      "verifyUpdateCodeSignature": false,
+      "signDlls": true,
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        },
+        {
+          "target": "nsis-web",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "removeDefaultUninstallWelcomePage": true,
+      "allowToChangeInstallationDirectory": true,
+      "uninstallDisplayName": "Uninstall FISO Strips",
+      "license": "LICENSE",
+      "runAfterFinish": true
+    },
+    "nsisWeb": {
+      "oneClick": false,
+      "perMachine": false,
+      "removeDefaultUninstallWelcomePage": true,
+      "allowToChangeInstallationDirectory": true,
+      "uninstallDisplayName": "Uninstall FISO Strips",
+      "license": "LICENSE",
+      "runAfterFinish": true
+    },
+    "files": [
+      "static/**/*",
+      "node_modules/**/*",
+      "package.json",
+      "index.js",
+      "preload.js",
+      "LICENSE",
+      "CREDITS"
+    ],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "knokbak",
+        "repo": "FISO-Strips"
+      }
+    ]
+  },
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/knokbak/FISO-Strips/issues"
+  },
+  "homepage": "https://github.com/knokbak/FISO-Strips#readme",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.4",
+    "@types/node": "^18.11.19",
+    "electron": "^22.2.0",
+    "electron-builder": "^23.6.0",
+    "electron-forge": "^5.2.4",
+    "electron-prebuilt-compile": "^8.2.0",
+    "electron-updater": "^5.3.0",
+    "typescript": "^4.9.5",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
+}

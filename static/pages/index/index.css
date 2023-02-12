@@ -1,0 +1,267 @@
+/*
+ * Virtual FISO Strips application
+ * Copyright (C) 2023 Vionity Ltd
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public
+ * License along with this program. If not, see
+ * <https://www.gnu.org/licenses/>.
+ */
+
+:root {
+    --strip-rows: 6;
+    --strip-columns: 1;
+    --strip-width: 475px;
+    --strip-height: 40px;
+}
+
+@media only screen and (min-width: 950px) {
+    :root {
+        --strip-rows: 3;
+        --strip-columns: 2;
+    }
+}
+
+@media only screen and (min-width: 1530px) {
+    :root {
+        --strip-rows: 2;
+        --strip-columns: 3;
+        --strip-width: 510px;
+    }
+}
+
+@media only screen and (min-width: 1530px) {
+    :root {
+        --strip-width: 510px;
+    }
+}
+
+@media only screen and (min-width: 2785px) {
+    :root {
+        --strip-rows: 1;
+        --strip-columns: 6;
+    }
+}
+
+@media only screen and (min-height: 850px) {
+    :root {
+        --strip-height: 48px;
+    }
+}
+
+@media only screen and (min-height: 1020px) {
+    :root {
+        --strip-height: 54px;
+    }
+}
+
+body {
+    overflow-y: hidden;
+}
+
+.body {
+    display: flex;
+    flex-flow: row wrap;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.strip-area {
+    /*width: var(--strip-width);
+    width: calc(100vw / var(--strip-columns));*/
+    width: calc(calc(100vw / var(--strip-columns)) - 2px);
+    border: 1px solid #000;
+    background: #444;
+}
+
+.strip-area-header {
+    padding: 5px;
+    background: #555;
+    color: #fff;
+    cursor: crosshair;
+}
+
+.strip-area-header > span {
+    color: #fff;
+    font-weight: 800;
+    font-size: 13px;
+    margin: 0;
+    pointer-events: none;
+}
+
+.strip-area-body {
+    /*height: calc(50vh - 30px);*/
+    height: calc(calc(100vh / var(--strip-rows)) - 30px);
+    overflow-y: hidden;
+    overflow-x: clip;
+}
+
+.strip {
+    display: block;
+    position: relative;
+    width: calc(100% + 2px);
+    left: -2px;
+    /*width: calc(var(--strip-width) + 1px);
+    width: calc(calc(100vw / var(--strip-columns)) + 3px);
+    max-width: calc(calc(100vw / var(--strip-columns)) + calc(1px * var(--strip-columns)));*/
+    height: calc(var(--strip-height) + 2px);
+    background: #fff;
+    border: 1px solid #000;
+    cursor: move;
+}
+
+.strip:not(:last-child) {
+    margin: 0 0 2px;
+}
+
+.aircraft-strip-content {
+    text-align: center;
+    line-height: calc(var(--strip-height) / 2);
+    font-size: 16px;
+    border: 1px solid #222;
+}
+
+.aircraft-strip-content:nth-child(1) {
+    position: absolute;
+    left: 0;
+}
+
+.aircraft-strip-content:nth-child(2) {
+    position: absolute;
+    left: 67px;
+}
+
+.aircraft-strip-content:nth-child(3) {
+    position: absolute;
+    left: 214px;
+}
+
+.aircraft-strip-content:nth-child(4) {
+    position: absolute;
+    left: 281px;
+}
+
+.aircraft-strip-content:nth-child(5) {
+    position: absolute;
+    left: 348px;
+    width: 85px !important;
+}
+
+.aircraft-strip-content:nth-child(6) {
+    position: absolute;
+    left: 435px;
+    width: calc(100% - 435px - 2px) !important;
+}
+
+.aircraft-strip-content.p13 {
+    width: 65px;
+    height: var(--strip-height);
+    background: #fff;
+}
+
+.aircraft-strip-content.p13 > .aircraft-strip-data,
+.aircraft-strip-content.p13 textarea,
+.aircraft-strip-content.p13 input {
+    height: calc(var(--strip-height) / 2);
+    line-height: calc(var(--strip-height) / 2);
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+}
+
+.aircraft-strip-content.p13 > .aircraft-strip-data {
+    position: relative;
+    border: 1px solid #222;
+    inset: -1px;
+    width: 100%;
+}
+
+.aircraft-strip-content.p13 > .aircraft-strip-data:first-child {
+    bottom: -3px;
+}
+
+.aircraft-strip-content.p13 > .aircraft-strip-data:last-child {
+    top: -3px;
+}
+
+.aircraft-strip-content.p25, .aircraft-strip-content.p33 {
+    /*width: 25%;*/
+    height: var(--strip-height);
+    background: #fff;
+}
+
+.aircraft-strip-content.p25 {
+    width: 145px !important;
+}
+
+.strip.local .aircraft-strip-content.p25 {
+    background: rgb(116, 228, 72);
+}
+
+.strip.arrival .aircraft-strip-content.p25 {
+    background: rgb(255, 186, 37);
+}
+
+.strip.departure .aircraft-strip-content.p25 {
+    background: rgb(69, 118, 255);
+}
+
+#area-runways .strip.departure .aircraft-strip-content.p25 {
+    background: rgb(245, 96, 96);
+}
+
+.aircraft-strip-content.p33 {
+    /*width: 33%;*/
+    height: var(--strip-height);
+    padding: 0 1px;
+}
+
+.aircraft-strip-content.p25 textarea,
+.aircraft-strip-content.p33 textarea,
+.aircraft-strip-content.p25 input,
+.aircraft-strip-content.p33 input,
+.aircraft-strip-content.p25 span,
+.aircraft-strip-content.p33 span {
+    line-height: var(--strip-height);
+    font-size: 14px;
+    height: var(--strip-height);
+    text-align: center;
+    width: 100%;
+}
+
+.aircraft-strip-content.p25 span,
+.aircraft-strip-content.p25 input {
+    font-size: 16px;
+}
+
+.aircraft-strip-content.p33 textarea {
+    line-height: 13px;
+    font-size: 12px;
+    padding: 1px 3px !important;
+}
+
+.aircraft-strip-content.p25 span,
+.aircraft-strip-content.p33 span {
+    font-weight: 800;
+}
+
+textarea,
+.aircraft-strip-content input {
+    border: none !important;
+    outline: none !important;
+    font-weight: 600 !important;
+    background: transparent;
+    resize: none;
+    position: relative;
+    top: -2px;
+    left: -2px;
+}
