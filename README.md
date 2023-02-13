@@ -1,6 +1,8 @@
 # FISO Strips
 A very simple work-in-progress app for the management of virtual flight progress strips.
 
+![electron_R9WmpEMJFv](https://user-images.githubusercontent.com/65198941/218450479-b5ff22d4-254a-4cc9-8d2c-774fec38b50c.png)
+
 ## License
 
 Virtual FISO Strips application    
