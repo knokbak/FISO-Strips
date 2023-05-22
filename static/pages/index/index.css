@@ -215,7 +215,7 @@ body {
     background: rgb(69, 118, 255);
 }
 
-#area-runways .strip.departure .aircraft-strip-content.p25 {
+#area-runways .strip .aircraft-strip-content.p25 {
     background: rgb(245, 96, 96);
 }
 

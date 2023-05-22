@@ -21,12 +21,6 @@ const { app, BrowserWindow } = require('electron');
 const { autoUpdater } = require('electron-updater');
 const { join } = require('node:path');
 
-if (app.requestSingleInstanceLock()) {
-    init();
-} else {
-    app.quit();
-}
-
 async function init() {
     let topWindow;
     let topWindowTitle = 'FISO Strips';
@@ -68,15 +62,6 @@ async function init() {
     };
 
     app.whenReady().then(() => {
-        app.on('second-instance', () => {
-            if (topWindow) {
-                if (topWindow.isMinimized()) {
-                    topWindow.restore();
-                }
-                topWindow.focus();
-            }
-        });
-
         if (app.isPackaged) {
             autoUpdater.on('update-available', () => {
                 if (topWindow) {
